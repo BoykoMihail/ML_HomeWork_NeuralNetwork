@@ -292,15 +292,19 @@ public:
             m_rng.seed(seed);
         }
 
-        std::vector<XType> x_batches;
-        std::vector<YType> y_batches;
-        const int nbatch = utilites::create_shuffled_batches(x, y, batch_size, m_rng,
-                x_batches, y_batches);
 
-        m_callback->m_nbatch = nbatch;
-        m_callback->m_nepoch = epoch;
 
         for (int k = 0; k < epoch; k++) {
+
+            std::vector<XType> x_batches;
+            std::vector<YType> y_batches;
+            const int nbatch = utilites::create_shuffled_batches(x, y, batch_size, m_rng,
+                    x_batches, y_batches);
+
+            m_callback->m_nbatch = nbatch;
+            m_callback->m_nepoch = epoch;
+
+
             m_callback->m_epoch_id = k;
 
             for (int i = 0; i < nbatch; i++) {
