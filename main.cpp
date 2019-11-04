@@ -49,26 +49,15 @@ int main(int argc, char** argv) {
     DropOut* layer2 = new DropOut(300, 300);
     layer2->set_dropout_ratio(0.9);
     Layer* layer3 = new FullyConnected<LeakyRelu>(300, 100);
-    //    DropOut* layer4 = new DropOut(100, 100);
-    //    layer2->set_dropout_ratio(0.7);
-    //    Layer* layer5 = new FullyConnected<LeakyRelu>(300, 100);
-    //    DropOut* layer6 = new DropOut(100, 100);
-    //    layer2->set_dropout_ratio(0.6);
     Layer* layer7 = new FullyConnected<Softmax>(100, 10);
-
+    net.set_output(new MultiClassEntropy());
     net.add_layer(layer1);
     net.add_layer(layer2);
     net.add_layer(layer3);
-    //    net.add_layer(layer4);
-    //    net.add_layer(layer5);
-    //    net.add_layer(layer6);
     net.add_layer(layer7);
 
-
-    net.set_output(new MultiClassEntropy());
-
     AdaGrad opt;
-    opt.m_lrate = 0.01;
+    opt.m_lrate = 0.001;
 
     VerboseCallback callback;
     net.set_callback(callback);
@@ -82,7 +71,7 @@ int main(int argc, char** argv) {
 
     //    net.check_gradient(train_input.transpose(), train_output.transpose(), 6, 123);
 
-    net.fit(opt, train_input.transpose(), train_output.transpose(), 20000, 12, 123);
+    net.fit(opt, train_input.transpose(), train_output.transpose(), 4000, 30, 123);
 
     auto pred = net.predict(test_input.transpose());
 

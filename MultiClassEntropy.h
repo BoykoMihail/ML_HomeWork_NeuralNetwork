@@ -103,7 +103,7 @@ public:
 
         for (int i = 0; i < nelem; i++) {
             if (din_data[i] < Scalar(0)) {
-                res += abs(std::log(-din_data[i]));
+                res += std::log(-din_data[i]);
             } 
         }
 
