@@ -23,8 +23,10 @@
         <itemPath>VerboseCallback.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Layers" projectFiles="true">
+        <itemPath>CNN.h</itemPath>
         <itemPath>DropOut.h</itemPath>
         <itemPath>FullyConnected.h</itemPath>
+        <itemPath>MaxPooling.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="Optimizer" projectFiles="true">
         <itemPath>AdaGrad.h</itemPath>
@@ -37,6 +39,7 @@
         <itemPath>RegressionMSE.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f5" displayName="Utilites" projectFiles="true">
+        <itemPath>FindMax.h</itemPath>
         <itemPath>Randome.h</itemPath>
       </logicalFolder>
       <itemPath>Callback.h</itemPath>
@@ -80,6 +83,8 @@
       </item>
       <item path="BinaryClassEntropy.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="CNN.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Callback.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Configuration.h" ex="false" tool="3" flavor2="0">
@@ -90,6 +95,8 @@
       </item>
       <item path="Evaluation.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="FindMax.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="FullyConnected.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Identity.h" ex="false" tool="3" flavor2="0">
@@ -99,6 +106,8 @@
       <item path="LeakyRelu.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="LogSoftMax.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MaxPooling.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MnistUtil.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -159,6 +168,8 @@
       </item>
       <item path="BinaryClassEntropy.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="CNN.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Callback.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Configuration.h" ex="false" tool="3" flavor2="0">
@@ -169,6 +180,8 @@
       </item>
       <item path="Evaluation.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="FindMax.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="FullyConnected.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Identity.h" ex="false" tool="3" flavor2="0">
@@ -178,6 +191,8 @@
       <item path="LeakyRelu.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="LogSoftMax.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MaxPooling.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MnistUtil.cpp" ex="false" tool="1" flavor2="0">
       </item>

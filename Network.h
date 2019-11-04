@@ -298,6 +298,7 @@ public:
 
             std::vector<XType> x_batches;
             std::vector<YType> y_batches;
+
             const int nbatch = utilites::create_shuffled_batches(x, y, batch_size, m_rng,
                     x_batches, y_batches);
 
@@ -308,10 +309,15 @@ public:
             m_callback->m_epoch_id = k;
 
             for (int i = 0; i < nbatch; i++) {
+
                 m_callback->m_batch_id = i;
                 m_callback->pre_training_batch(this, x_batches[i], (Matrix) y_batches[i]);
+                
+                cout<<"forward start"<<endl;
                 this->forward(x_batches[i]);
+                cout<<"forward end"<<endl;
                 this->backprop(x_batches[i], y_batches[i]);
+                cout<<"backprop end"<<endl;
                 this->update(opt);
                 m_callback->post_training_batch(this, x_batches[i], (Matrix) y_batches[i]);
 
