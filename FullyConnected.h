@@ -14,8 +14,10 @@
 #include "Configuration.h"
 #include "Layer.h"
 #include "Randome.h"
+#include "Activation.h"
+#include "ReLU.h"
 
-template <typename Activation>
+
 class FullyConnected : public Layer {
 private:
     typedef Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Matrix;
@@ -30,11 +32,19 @@ private:
     Matrix m_z; // z = W' * in + b
     Matrix m_a; // a = act(z)
     Matrix m_din; // Derivative of the input.
+    
+    Activation* activation;
 
 public:
 
+    FullyConnected(const int in_size, const int out_size, Activation& activation) :
+    Layer(in_size, out_size) {
+        this->activation = &activation;
+    }
+    
     FullyConnected(const int in_size, const int out_size) :
     Layer(in_size, out_size) {
+        this->activation = new ReLU();
     }
 
     void init(const Scalar& mu, const Scalar& sigma, RNG& rng) {
@@ -54,8 +64,7 @@ public:
         m_z.colwise() += m_bias;
         // activation
         m_a.resize(this->m_out_size, nobj);
-        
-        Activation::activate(m_z, m_a);
+        activation->activate(m_z, m_a);
     }
 
     const Matrix& output() const {
@@ -65,7 +74,7 @@ public:
     void backprop(const Matrix& prev_layer_data, const Matrix& next_layer_data) {
         const int nobj = prev_layer_data.cols();
         Matrix& dLz = m_z;
-        Activation::calculate_jacobian(m_z, m_a, next_layer_data, dLz);
+        activation->calculate_jacobian(m_z, m_a, next_layer_data, dLz);
         m_dw.noalias() = prev_layer_data * dLz.transpose() / nobj;
         m_db.noalias() = dLz.rowwise().mean();
         m_din.resize(this->m_in_size, nobj);
@@ -107,6 +116,11 @@ public:
         std::copy(m_dw.data(), m_dw.data() + m_dw.size(), res.begin());
         std::copy(m_db.data(), m_db.data() + m_db.size(), res.begin() + m_dw.size());
         return res;
+    }
+    
+    
+    std::string getNameOfLayer() const {
+        return "FullyConnected";
     }
 };
 

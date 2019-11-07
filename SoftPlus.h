@@ -11,21 +11,22 @@
 #include <eigen3/Eigen/Core>
 #include "Configuration.h"
 
-class SoftPlus {
+class SoftPlus : public Activation {
 private:
     typedef Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Matrix;
 
 public:
+    SoftPlus(){}
     // activation(z) = log (1 + exp(-z))
 
-    static inline void activate(const Matrix& Z, Matrix& A) {
+    void activate(const Matrix& Z, Matrix& A) {
         A.array() = (Scalar(1) + (-Z.array()).exp()).log();
     }
 
     // J = d_a / d_z = 1 / 1 + exp(-z))
     // g = J * f = z / 1 + exp(-z))
 
-    static inline void calculate_jacobian(const Matrix& Z, const Matrix& A,
+    void calculate_jacobian(const Matrix& Z, const Matrix& A,
             const Matrix& F, Matrix& G) {
         G.array() = Z.array() / (Scalar(1) + (-Z.array()).exp());
     }

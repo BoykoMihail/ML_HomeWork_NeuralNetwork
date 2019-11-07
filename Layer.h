@@ -11,6 +11,7 @@
 #include <eigen3/Eigen/Core>
 #include <vector>
 #include "Optimizer.h"
+#include <string>
 
 class Layer {
 protected:
@@ -57,6 +58,8 @@ public:
     };
 
     virtual std::vector<Scalar> get_derivatives() const = 0;
+    
+    virtual std::string getNameOfLayer() const = 0;
 };
 
 

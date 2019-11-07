@@ -28,8 +28,8 @@ private:
 
 public:
 
-    DropOut(const int in_size, const int out_size) :
-    Layer(in_size, out_size) {
+    DropOut() :
+    Layer(0, 0) {
     }
 
     void set_dropout_ratio(float dropout_ratio) {
@@ -40,7 +40,7 @@ public:
     }
 
     void forward(const Matrix& prev_layer_data) {
-        dropout_mask = utilites::binomial(prev_layer_data.rows(), prev_layer_data.cols(), dropout_ratio) / dropout_ratio;
+        dropout_mask = utilites::binomial(prev_layer_data.rows(), prev_layer_data.cols(), dropout_ratio);
         m_a = prev_layer_data.cwiseProduct(dropout_mask);
     }
 
@@ -70,6 +70,10 @@ public:
     std::vector<Scalar> get_derivatives() const {
         std::vector<Scalar> res(0);
         return res;
+    }
+    
+    std::string getNameOfLayer() const {
+        return "DropOut";
     }
 };
 

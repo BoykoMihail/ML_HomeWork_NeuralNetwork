@@ -39,9 +39,11 @@
         <itemPath>RegressionMSE.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f5" displayName="Utilites" projectFiles="true">
+        <itemPath>Convolution.h</itemPath>
         <itemPath>FindMax.h</itemPath>
         <itemPath>Randome.h</itemPath>
       </logicalFolder>
+      <itemPath>Activation.h</itemPath>
       <itemPath>Callback.h</itemPath>
       <itemPath>Configuration.h</itemPath>
       <itemPath>Confusion.h</itemPath>
@@ -79,6 +81,8 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="Activation.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="AdaGrad.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="BinaryClassEntropy.h" ex="false" tool="3" flavor2="0">
@@ -90,6 +94,8 @@
       <item path="Configuration.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Confusion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Convolution.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DropOut.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -164,6 +170,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Activation.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="AdaGrad.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="BinaryClassEntropy.h" ex="false" tool="3" flavor2="0">
@@ -175,6 +183,8 @@
       <item path="Configuration.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Confusion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Convolution.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DropOut.h" ex="false" tool="3" flavor2="0">
       </item>

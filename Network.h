@@ -18,6 +18,7 @@
 #include "Callback.h"
 #include "Randome.h"
 #include <iostream>
+#include "DropOut.h"
 
 using namespace std;
 
@@ -42,7 +43,7 @@ private:
         }
 
         for (int i = 1; i < nlayer; i++) {
-            if (m_layers[i]->in_size() != m_layers[i - 1]->out_size()) {
+            if ( m_layers[i]->getNameOfLayer() != "DropOut" && m_layers[i - 1]->getNameOfLayer() != "DropOut" && m_layers[i]->in_size() != m_layers[i - 1]->out_size()) {
                 throw std::invalid_argument("Unit sizes do not match");
             }
         }
@@ -54,7 +55,13 @@ private:
         if (nlayer <= 0) {
             return;
         }
-
+//
+//         for (int i = 1; i < nlayer; i++) {
+//            if ( m_layers[i]->getNameOfLayer() != "DropOut" && m_layers[i - 1]->getNameOfLayer() != "DropOut" && m_layers[i]->in_size() != m_layers[i - 1]->out_size()) {
+//                throw std::invalid_argument("Unit sizes do not match");
+//            }
+//        }
+        
         if (input.rows() != m_layers[0]->in_size()) {
             throw std::invalid_argument("Input data have incorrect dimension");
         }
@@ -313,11 +320,8 @@ public:
                 m_callback->m_batch_id = i;
                 m_callback->pre_training_batch(this, x_batches[i], (Matrix) y_batches[i]);
                 
-                cout<<"forward start"<<endl;
                 this->forward(x_batches[i]);
-                cout<<"forward end"<<endl;
                 this->backprop(x_batches[i], y_batches[i]);
-                cout<<"backprop end"<<endl;
                 this->update(opt);
                 m_callback->post_training_batch(this, x_batches[i], (Matrix) y_batches[i]);
 

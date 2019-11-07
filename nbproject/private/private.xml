@@ -8,13 +8,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/boyko_mihail/NetBeansProjects/course_Ml/Boyko/ML_HomeWork_NeuralNetwork/main.cpp</file>
-            <file>file:/home/boyko_mihail/NetBeansProjects/course_Ml/Boyko/ML_HomeWork_NeuralNetwork/FullyConnected.h</file>
-            <file>file:/home/boyko_mihail/NetBeansProjects/course_Ml/Boyko/ML_HomeWork_NeuralNetwork/Network.h</file>
-            <file>file:/home/boyko_mihail/NetBeansProjects/course_Ml/Boyko/ML_HomeWork_NeuralNetwork/DropOut.h</file>
-            <file>file:/home/boyko_mihail/NetBeansProjects/course_Ml/Boyko/ML_HomeWork_NeuralNetwork/FindMax.h</file>
-            <file>file:/home/boyko_mihail/NetBeansProjects/course_Ml/Boyko/ML_HomeWork_NeuralNetwork/MaxPooling.h</file>
-            <file>file:/home/boyko_mihail/NetBeansProjects/course_Ml/Boyko/ML_HomeWork_NeuralNetwork/CNN.h</file>
-            <file>file:/home/boyko_mihail/NetBeansProjects/course_Ml/Boyko/ML_HomeWork_NeuralNetwork/Randome.h</file>
+            <file>file:/home/boyko_mihail/NetBeansProjects/course_Ml/Boyko/ML_HomeWork_NeuralNetwork/LogSoftMax.h</file>
+            <file>file:/home/boyko_mihail/NetBeansProjects/course_Ml/Boyko/ML_HomeWork_NeuralNetwork/Sigmoid.h</file>
         </group>
     </open-files>
 </project-private>

@@ -24,6 +24,7 @@
 #include "Evaluation.h"
 #include "CNN.h"
 #include "MaxPooling.h"
+#include "Sigmoid.h"
 
 using namespace std;
 
@@ -47,43 +48,36 @@ int main(int argc, char** argv) {
 
     Network net;
 
-   
-    Layer* layer1 = new CNN<ReLU>(28, 28, 1, 3, 5, 5);
-    Layer* layer2 = new MaxPooling<ReLU>(24, 24, 3, 3, 3);
-    Layer* layer3 = new FullyConnected<Softmax>(8 * 8 * 3, 10);
+    LeakyRelu lk(0.01);
+    Sigmoid sig;
+    Layer* layer1 = new FullyConnected(784, 300, sig);
+    DropOut* layer2 = new DropOut();
+    layer2->set_dropout_ratio(0.9);
+    Layer* layer3 = new FullyConnected(300, 100,  sig);
+    Softmax sm;
+    Layer* layer7 = new FullyConnected(100, 10, sm);
     net.set_output(new MultiClassEntropy());
     net.add_layer(layer1);
-    net.add_layer(layer2);
     net.add_layer(layer3);
-
-//        Layer* layer1 = new FullyConnected<LeakyRelu>(784, 300);
-//        DropOut* layer2 = new DropOut(300, 300);
-//        layer2->set_dropout_ratio(0.9);
-//        Layer* layer3 = new FullyConnected<LeakyRelu>(300, 100);
-//        Layer* layer7 = new FullyConnected<Softmax>(100, 10);
-//        net.set_output(new MultiClassEntropy());
-//        net.add_layer(layer1);
-//        net.add_layer(layer2);
-//        net.add_layer(layer3);
-//        net.add_layer(layer7);
+    net.add_layer(layer7);
 
     AdaGrad opt;
-    opt.m_lrate = 0.001;
+    opt.m_lrate = 0.01;
 
     VerboseCallback callback;
     net.set_callback(callback);
 
     net.init(0, 0.01, 123);
-
+    
     cout << train_input.transpose().rows() << " " << train_input.transpose().cols() << endl;
     cout << train_output.transpose().rows() << " " << train_output.transpose().cols() << endl;
     cout << test_input.transpose().rows() << " " << test_input.transpose().cols() << endl;
     cout << test_output.transpose().rows() << " " << test_output.transpose().cols() << endl;
 
     //    net.check_gradient(train_input.transpose(), train_output.transpose(), 6, 123);
-    
-     
-    net.fit(opt, train_input.transpose(), train_output.transpose(), 4000, 30, 123);
+
+
+    net.fit(opt, train_input.transpose(), train_output.transpose(), 2000, 11, 123);
 
 
     auto pred = net.predict(test_input.transpose());

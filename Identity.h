@@ -11,20 +11,21 @@
 #include <eigen3/Eigen/Core>
 #include "Configuration.h"
 
-class Identity {
+class Identity : public Activation {
 private:
     typedef Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Matrix;
 
 public:
+    Identity(){}
 
-    static inline void activate(const Matrix& Z, Matrix& A) {
+    void activate(const Matrix& Z, Matrix& A) {
         A.noalias() = Z;
     }
 
     // J = d_a / d_z = I
     // g = J * f = f
 
-    static inline void calculate_jacobian(const Matrix& Z, const Matrix& A,
+    void calculate_jacobian(const Matrix& Z, const Matrix& A,
             const Matrix& F, Matrix& G) {
         G.noalias() = F;
     }

@@ -15,15 +15,16 @@
 
 using namespace std;
 
-class LogSoftMax {
+class LogSoftMax : public Activation {
 private:
     typedef Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Matrix;
     typedef Eigen::Array<Scalar, 1, Eigen::Dynamic> RowArray;
 
 public:
+     LogSoftMax(){}
     // activation(z) = log(softmax(z))
 
-    static inline void activate(const Matrix& Z, Matrix& A) {
+    void activate(const Matrix& Z, Matrix& A) {
         A.array() = (Z.rowwise() - Z.colwise().maxCoeff()).array().exp();
         RowArray colsums = A.colwise().sum();
         A.array() =  (A.array().log().rowwise() -  (colsums).log()).array();
@@ -32,7 +33,7 @@ public:
     // J = d_a / d_z = z - sum(z*exp(z)) / sum (exp(z))
     // g = J * f = z .* f - sum(z.*a).*f
 
-    static inline void calculate_jacobian(const Matrix& Z, const Matrix& A,
+    void calculate_jacobian(const Matrix& Z, const Matrix& A,
             const Matrix& F, Matrix& G) {
 
         auto col_temp = ((A.array() * (Z.rowwise() - Z.colwise().maxCoeff()).array()).colwise().sum()) ;
